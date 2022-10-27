@@ -35,7 +35,7 @@ const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handle
     </div>
 );
 
-const TopPlay = ({ setInactive }) => {
+const TopPlay = ({ setLocation }) => {
     const dispatch = useDispatch();
     const { activeSong, isPlaying } = useSelector((state) => state.player);
     const { data } = useGetTopChartsQuery();
@@ -63,7 +63,7 @@ const TopPlay = ({ setInactive }) => {
             <div className="w-full flex flex-col">
                 <div className="flex flex-row justify-between items-center">
                     <h2 className="text-[#a4fcbe] dark:text-white font-bold text-2xl">Top Charts</h2>
-                    <Link to="/top-charts" onClick={() => setInactive(true)}>
+                    <Link to="/top-charts" onClick={() => setLocation('Top Charts')}>
                         <p className="text-[#d6ffe1] dark:text-gray-300 text-base cursor-pointer">See more</p>
                     </Link>
                 </div>
@@ -85,7 +85,7 @@ const TopPlay = ({ setInactive }) => {
             <div className="w-full flex flex-col mt-8">
                 <div className="flex flex-row justify-between items-center">
                     <h2 className="text-[#a4fcbe] dark:text-white font-bold text-2xl">Top Artists</h2>
-                    <Link to="/top-artists" onClick={() => setInactive(true)}>
+                    <Link to="/top-artists" onClick={() => setLocation('Top Artists')}>
                         <p className="text-[#d6ffe1] dark:text-gray-300 text-base cursor-pointer">See more</p>
                     </Link>
                 </div>
