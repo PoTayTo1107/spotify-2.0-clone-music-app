@@ -62,15 +62,12 @@ const style =
 const activeStyle =
     'flex flex-row justify-start items-center my-8 text-sm font-medium dark:text-cyan-400 text-[#a4fcbe]';
 
-const NavLinks = ({ handleClick, location, setLocation }) => (
+const NavLinks = ({ handleClick }) => (
     <div className="mt-10">
         {links.map((item) => (
             <NavLink
-                onClick={() => {
-                    if (handleClick) handleClick();
-                    setLocation(item.name);
-                }}
-                className={location === item.name ? activeStyle : style}
+                onClick={handleClick && handleClick()}
+                className={({ isActive }) => (isActive ? activeStyle : style)}
                 key={item.name}
                 to={item.to}>
                 <item.icon className="w-6 h-6 mr-2" />
@@ -80,7 +77,7 @@ const NavLinks = ({ handleClick, location, setLocation }) => (
     </div>
 );
 
-const Sidebar = ({ location, setLocation }) => {
+const Sidebar = () => {
     const dispatch = useDispatch();
     const darkThemeEnabled = useSelector((state) => state.theme.value);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -98,7 +95,7 @@ const Sidebar = ({ location, setLocation }) => {
         <>
             <div className="md:flex hidden flex-col w-[240px] py-10 px-4 dark:bg-[#191624] bg-[#433b66]">
                 <img src={logo} alt="logo" className="w-full h-14 object-contain" />
-                <NavLinks location={location} setLocation={setLocation} />
+                <NavLinks />
 
                 <FormControlLabel
                     className="justify-center"

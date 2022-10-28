@@ -20,7 +20,7 @@ const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handle
                 <Link to={`/songs/${song.key}`}>
                     <p className="text-xl font-bold text-[#a4fcbe] dark:text-white">{song.title}</p>
                 </Link>
-                <Link to={`/songs/${song?.artists[0].adamid}`}>
+                <Link to={`/artists/${song?.artists[0].adamid}`}>
                     <p className="text-base text-[#d6ffe1] dark:text-gray-300 mt-1">{song.subtitle}</p>
                 </Link>
             </div>
@@ -35,7 +35,7 @@ const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handle
     </div>
 );
 
-const TopPlay = ({ setLocation }) => {
+const TopPlay = () => {
     const dispatch = useDispatch();
     const { activeSong, isPlaying } = useSelector((state) => state.player);
     const { data } = useGetTopChartsQuery();
@@ -63,7 +63,7 @@ const TopPlay = ({ setLocation }) => {
             <div className="w-full flex flex-col">
                 <div className="flex flex-row justify-between items-center">
                     <h2 className="text-[#a4fcbe] dark:text-white font-bold text-2xl">Top Charts</h2>
-                    <Link to="/top-charts" onClick={() => setLocation('Top Charts')}>
+                    <Link to="/top-charts">
                         <p className="text-[#d6ffe1] dark:text-gray-300 text-base cursor-pointer">See more</p>
                     </Link>
                 </div>
@@ -85,7 +85,7 @@ const TopPlay = ({ setLocation }) => {
             <div className="w-full flex flex-col mt-8">
                 <div className="flex flex-row justify-between items-center">
                     <h2 className="text-[#a4fcbe] dark:text-white font-bold text-2xl">Top Artists</h2>
-                    <Link to="/top-artists" onClick={() => setLocation('Top Artists')}>
+                    <Link to="/top-artists">
                         <p className="text-[#d6ffe1] dark:text-gray-300 text-base cursor-pointer">See more</p>
                     </Link>
                 </div>

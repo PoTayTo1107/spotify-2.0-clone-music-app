@@ -1,4 +1,3 @@
-import { useReducer } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
@@ -9,42 +8,15 @@ const App = () => {
     const dispatch = useDispatch();
     const { activeSong } = useSelector((state) => state.player);
 
-    const persistedState = localStorage.getItem('location');
-    const initialState = persistedState ? JSON.parse(persistedState) : 'Discover';
-    const reducer = (state, action) => {
-        switch (action) {
-            case 'Discover': {
-                localStorage.setItem('location', JSON.stringify('Discover'));
-                return 'Discover';
-            }
-            case 'Around You': {
-                localStorage.setItem('location', JSON.stringify('Around You'));
-                return 'Around You';
-            }
-            case 'Top Artists': {
-                localStorage.setItem('location', JSON.stringify('Top Artists'));
-                return 'Top Artists';
-            }
-            case 'Top Charts': {
-                localStorage.setItem('location', JSON.stringify('Top Charts'));
-                return 'Top Charts';
-            }
-            default:
-                return state;
-        }
-    };
-
-    const [location, setLocation] = useReducer(reducer, initialState);
-
     return (
         <div className="relative flex">
-            <Sidebar location={location} setLocation={setLocation} />
+            <Sidebar />
             <div className="flex-1 flex flex-col dark:bg-gradient-to-br dark:from-black dark:to-[#121286] dark:text-white bg-gradient-to-br from-[#483d8b] to-[#EAECC6] text-black">
                 <Searchbar />
                 <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
                     <div className="flex-1 h-fit pb-40">
                         <Routes>
-                            <Route path="/" element={<Discover />} />
+                            <Route path="/home" element={<Discover />} />
                             <Route path="/top-artists" element={<TopArtists />} />
                             <Route path="/top-charts" element={<TopCharts />} />
                             <Route path="/around-you" element={<AroundYou />} />
@@ -54,7 +26,7 @@ const App = () => {
                         </Routes>
                     </div>
                     <div className="xl:sticky relative top-0 h-fit">
-                        <TopPlay setLocation={setLocation} />
+                        <TopPlay />
                     </div>
                 </div>
             </div>
