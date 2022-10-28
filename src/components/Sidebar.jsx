@@ -86,7 +86,7 @@ const Sidebar = () => {
         document.documentElement.classList.toggle('dark', darkThemeEnabled);
     }, [darkThemeEnabled]);
 
-    const handleClick = () => {
+    const handleTheme = () => {
         dispatch(preferences());
         dispatch(subscribe());
     };
@@ -95,11 +95,11 @@ const Sidebar = () => {
         <>
             <div className="md:flex hidden flex-col w-[240px] py-10 px-4 dark:bg-[#191624] bg-[#433b66]">
                 <img src={logo} alt="logo" className="w-full h-14 object-contain" />
-                <NavLinks handleClick={handleClick} />
+                <NavLinks />
                 <FormControlLabel
                     className="justify-center"
                     control={
-                        <MaterialUISwitch sx={{ m: 1 }} checked={darkThemeEnabled} onChange={handleClick} />
+                        <MaterialUISwitch sx={{ m: 1 }} checked={darkThemeEnabled} onChange={handleTheme} />
                     }
                 />
             </div>
@@ -125,7 +125,7 @@ const Sidebar = () => {
                 <NavLinks handleClick={() => setMobileMenuOpen(false)} />
                 <FormControlLabel
                     control={
-                        <MaterialUISwitch sx={{ m: 1 }} checked={darkThemeEnabled} onChange={handleClick} />
+                        <MaterialUISwitch sx={{ m: 1 }} checked={darkThemeEnabled} onChange={handleTheme} />
                     }
                 />
             </div>
