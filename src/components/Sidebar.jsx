@@ -66,7 +66,7 @@ const NavLinks = ({ handleClick }) => (
     <div className="mt-10">
         {links.map((item) => (
             <NavLink
-                onClick={handleClick && handleClick()}
+                onClick={() => handleClick && handleClick()}
                 className={({ isActive }) => (isActive ? activeStyle : style)}
                 key={item.name}
                 to={item.to}>
@@ -95,8 +95,7 @@ const Sidebar = () => {
         <>
             <div className="md:flex hidden flex-col w-[240px] py-10 px-4 dark:bg-[#191624] bg-[#433b66]">
                 <img src={logo} alt="logo" className="w-full h-14 object-contain" />
-                <NavLinks />
-
+                <NavLinks handleClick={handleClick} />
                 <FormControlLabel
                     className="justify-center"
                     control={
@@ -124,6 +123,11 @@ const Sidebar = () => {
                             ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
                 <img src={logo} alt="logo" className="w-full h-14 object-contain" />
                 <NavLinks handleClick={() => setMobileMenuOpen(false)} />
+                <FormControlLabel
+                    control={
+                        <MaterialUISwitch sx={{ m: 1 }} checked={darkThemeEnabled} onChange={handleClick} />
+                    }
+                />
             </div>
         </>
     );
